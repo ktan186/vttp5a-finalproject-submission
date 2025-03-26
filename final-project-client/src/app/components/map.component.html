@@ -1,0 +1,79 @@
+
+<div class="map-container">
+  <!-- Search Bar -->
+  <div class="search-container mat-elevation-z2">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Enter Destination</mat-label>
+      <input matInput [(ngModel)]="destination" id="destination-input">
+      <button matSuffix mat-icon-button (click)="search()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <!-- Map Interface -->
+  <div *ngIf="apiLoaded" class="map-wrapper">
+    <google-map width="100%" height="500px" [center]="center" [zoom]="zoom">
+      <map-marker *ngFor="let marker of markers"
+                  [position]="marker.position"
+                  [title]="marker.title"
+                  [icon]="marker.icon"
+                  (mapClick)="onMarkerClick(marker.carparkId)">
+      </map-marker>
+    </google-map>
+  </div>
+
+  <!-- Display Carpark Details -->
+  <mat-card *ngIf="carparkDetails" class="details-card mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>{{ carparkDetails.carpark_name }}</mat-card-title>
+      <mat-card-subtitle>{{ carparkDetails.agency }} • {{ carparkDetails.carpark_id }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      
+      <div class="detail-section">
+        <h3><mat-icon>location_on</mat-icon> Location</h3>
+        <p>Latitude: {{ carparkDetails.latitude }}</p>
+        <p>Longitude: {{ carparkDetails.longitude }}</p>
+      </div>
+
+      <mat-divider></mat-divider>
+      
+      <div class="detail-section">
+        <h3><mat-icon>local_parking</mat-icon> Availability</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let availability of carparkDetails.availability">
+            <div mat-line><strong>{{ availability.lot_type }}:</strong> {{ availability.available_lots }} available</div>
+            <div mat-line>Last updated: {{ availability.last_updated }}</div>
+          </mat-list-item>
+        </mat-list>
+        <p><strong>Lot Types:</strong></p>
+        <ul>
+          <li><span class="lot-type-label lot-type-c">C</span> for Cars</li>
+          <li><span class="lot-type-label lot-type-h">H</span> for Heavy Vehicles</li>
+          <li><span class="lot-type-label lot-type-y">Y</span> for Motorcycles</li>
+        </ul>
+      </div>
+    </mat-card-content>
+    
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="navigateTo(carparkDetails)" class="action-btn">
+        <mat-icon>pin_drop</mat-icon> Navigate To
+      </button>
+      <button mat-raised-button color="primary" (click)="addFavourite()" class="action-btn">
+        <mat-icon>favorite</mat-icon> Add to Favorites
+      </button>
+    </mat-card-actions>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="accent" (click)="subscribeToTelegram(carparkDetails.carpark_id)" class="action-btn">
+        <mat-icon>notifications</mat-icon> Subscribe to Alerts
+      </button>
+      <button mat-raised-button color="warn" (click)="unsubscribeFromTelegram(carparkDetails.carpark_id)" class="action-btn">
+        <mat-icon>notifications_off</mat-icon> Unsubscribe
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

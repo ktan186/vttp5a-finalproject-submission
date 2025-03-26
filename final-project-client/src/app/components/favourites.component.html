@@ -1,0 +1,77 @@
+<div class="favorites-container">
+  <mat-card class="mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title class="header-title">Your Favorite Carparks</mat-card-title>
+      <mat-card-subtitle *ngIf="carparks.length > 0">{{ carparks.length }} saved locations</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="carparks.length > 0; else noFavorites" class="favorites-list">
+        <mat-card *ngFor="let c of carparks" class="favorite-card mat-elevation-z2">
+          <mat-card-header>
+            <mat-card-title>{{ c.carpark_name }}</mat-card-title>
+            <mat-card-subtitle>
+              <span class="agency-badge" [ngClass]="'agency-' + c.agency.toLowerCase()">
+                {{ c.agency }}
+              </span>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="detail-section">
+              <h3><mat-icon>location_on</mat-icon> Location</h3>
+              <p>Latitude: {{ c.latitude }}</p>
+              <p>Longitude: {{ c.longitude }}</p>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="detail-section">
+              <h3><mat-icon>local_parking</mat-icon> Availability</h3>
+              <mat-list>
+                <mat-list-item *ngFor="let availability of c.availability">
+                  <div mat-line><strong>{{ availability.lot_type }}:</strong> {{ availability.available_lots }} available</div>
+                  <div mat-line>Last updated: {{ availability.last_updated }}</div>
+                </mat-list-item>
+              </mat-list>
+              <p><strong>Lot Types:</strong></p>
+              <ul>
+                <li><span class="lot-type-label lot-type-c">C</span> for Cars</li>
+                <li><span class="lot-type-label lot-type-h">H</span> for Heavy Vehicles</li>
+                <li><span class="lot-type-label lot-type-y">Y</span> for Motorcycles</li>
+              </ul>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="navigateTo(c)" class="action-btn">
+              <mat-icon>pin_drop</mat-icon> Navigate To
+            </button>
+            <button mat-stroked-button color="warn" (click)="removeFavourite(c.carpark_id)" class="action-btn">
+              <mat-icon>delete</mat-icon> Remove
+            </button>
+          </mat-card-actions>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="accent" (click)="subscribeToTelegram(c.carpark_id)" class="action-btn">
+              <mat-icon>notifications</mat-icon> Subscribe to Alerts
+            </button>
+            <button mat-raised-button color="warn" (click)="unsubscribeFromTelegram(c.carpark_id)" class="action-btn">
+              <mat-icon>notifications_off</mat-icon> Unsubscribe
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <ng-template #noFavorites>
+        <div class="no-favorites">
+          <mat-icon>favorite_border</mat-icon>
+          <p>You haven't saved any carparks yet</p>
+          <button mat-raised-button color="primary" routerLink="/list">
+            <mat-icon>search</mat-icon> Browse Carparks
+          </button>
+        </div>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

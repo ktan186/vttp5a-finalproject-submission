@@ -1,0 +1,98 @@
+/* Common Styles */
+.favorites-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .header-title {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .filter-section {
+    margin-bottom: 20px;
+    max-width: 300px;
+  }
+  
+  /* Card Styles */
+  .favorite-card {
+    margin-bottom: 16px;
+    transition: transform 0.2s;
+  }
+  
+  .favorite-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Agency Badges */
+  .agency-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .agency-hdb {
+    background-color: #FF5733;
+  }
+  
+  .agency-ura {
+    background-color: #2b803b;
+  }
+  
+  .agency-lta {
+    background-color: #3357FF;
+  }
+  
+  /* Detail Styles */
+  .carpark-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .carpark-details p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+  
+  /* Empty States */
+  .no-results, .no-favorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .no-results mat-icon, .no-favorites mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    color: #3a75dd;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .favorites-container {
+      padding: 10px;
+    }
+    
+    .favorite-card {
+      margin-bottom: 12px;
+    }
+  }
+
+  .action-btn {
+    margin: 0px 2px; /* Add spacing between buttons */
+    padding: 10px 20px; /* Increase padding for better button size */
+    font-size: 14px; /* Adjust font size for better readability */
+    min-width: 150px; /* Set a minimum width for the buttons */
+  }

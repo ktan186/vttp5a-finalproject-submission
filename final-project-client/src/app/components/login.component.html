@@ -1,0 +1,63 @@
+<div class="login-container">
+  <div class="login-background"></div>
+  <mat-card class="login-card mat-elevation-z8">
+    <mat-card-header class="card-header">
+      <mat-card-title>
+        <h1 class="text-center">Welcome Back</h1>
+      </mat-card-title>
+      <mat-card-subtitle class="text-center">Sign in to your account</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (submit)="login()" class="login-form">
+        <!-- Username Field -->
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" required>
+          <mat-icon matPrefix>person_outline</mat-icon>
+          <mat-error *ngIf="form.get('username')?.hasError('required')">
+            Username is required
+          </mat-error>
+          <mat-error *ngIf="form.get('username')?.hasError('minlength')">
+            Username must be at least 3 characters
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required>
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="form.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+            Password must be at least 3 characters
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message mat-elevation-z1">
+          <mat-icon class="error-icon">error_outline</mat-icon>
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="form.invalid">
+          <mat-icon class="button-icon">login</mat-icon>
+          <span>Sign In</span>
+        </button>
+
+        <div class="register-link-container">
+          <span>Don't have an account?</span>
+          <a mat-button color="primary" (click)="goToRegister()" class="register-link">
+            Create account
+          </a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

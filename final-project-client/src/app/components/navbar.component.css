@@ -1,0 +1,199 @@
+/* Light Blue Toolbar */
+.lightblue-toolbar {
+  background-color: #e6f2ff;  /* Soft light blue */
+  color: #2c3e50;             /* Dark blue-gray for text */
+  padding: 0;
+  height: 64px;
+  width: 100%;
+  position: relative;
+}
+
+/* Active route highlight */
+.active {
+  background-color: rgba(0, 119, 204, 0.1);  /* Semi-transparent blue */
+  color: #0077cc;                            /* Brighter blue for active items */
+}
+
+/* Button hover states */
+.lightblue-toolbar button:hover {
+  background-color: rgba(0, 119, 204, 0.05);  /* Very light blue on hover */
+}
+
+/* Register button - make it stand out */
+.lightblue-toolbar .auth-button[color="primary"] {
+  background-color: #0077cc;  /* Bright blue */
+  color: white;
+}
+
+/* Logout button styling */
+.logout-button {
+  color: #e74c3c;  /* Keep logout red for visibility */
+}
+
+.toolbar-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Branding Section */
+.brand-section {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: max-content;
+  margin-right: 24px;
+}
+
+.brand-icon {
+  margin-right: 12px;
+  font-size: 28px;
+}
+
+.brand-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Dynamic Spacer */
+.flex-spacer {
+  flex: 1 1 auto;
+  min-width: 16px;
+}
+
+/* Navigation Section */
+.nav-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.nav-section button {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+.nav-icon {
+  margin-right: 8px;
+}
+
+/* Auth Section */
+.auth-section {
+  display: flex;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.auth-button {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Logout Button */
+.logout-button {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Active Route */
+.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Behavior */
+@media (max-width: 960px) {
+  .toolbar-container {
+    padding: 0 12px;
+  }
+  
+  .brand-text {
+    font-size: 1.1rem;
+  }
+  
+  .nav-section button {
+    padding: 0 8px;
+  }
+  
+  .nav-icon {
+    margin-right: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-icon {
+    margin-right: 8px;
+    font-size: 24px;
+  }
+  
+  .brand-text {
+    font-size: 1rem;
+  }
+  
+  .nav-label {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .responsive-toolbar {
+    height: 56px;
+  }
+  
+  .toolbar-container {
+    padding: 0 8px;
+  }
+  
+  .brand-icon {
+    font-size: 20px;
+    margin-right: 6px;
+  }
+  
+  .brand-text {
+    font-size: 0.9rem;
+  }
+  
+  .nav-section button {
+    padding: 0 6px;
+  }
+  
+  .nav-icon {
+    margin-right: 4px;
+    font-size: 20px;
+  }
+  
+  .nav-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-text {
+    display: none;
+  }
+  
+  .nav-label {
+    display: none;
+  }
+  
+  .nav-section button {
+    padding: 0 4px;
+    min-width: 40px;
+    justify-content: center;
+  }
+  
+  .nav-icon {
+    margin-right: 0;
+  }
+}

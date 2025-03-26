@@ -1,0 +1,53 @@
+<mat-toolbar class="lightblue-toolbar mat-elevation-z6">
+    <div class="toolbar-container">
+      <!-- Branding -->
+      <div class="brand-section" routerLink="/">
+        <mat-icon class="brand-icon">local_parking</mat-icon>
+        <span class="brand-text">Carpark Buddy</span>
+      </div>
+  
+      <!-- Dynamic Spacer -->
+      <div class="flex-spacer"></div>
+  
+      <!-- Navigation Buttons -->
+      <div class="nav-section">
+        <button *ngIf="isLoggedIn$ | async" mat-button routerLink="/map" 
+                routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <mat-icon class="nav-icon">map</mat-icon>
+          <span class="nav-label">Map</span>
+        </button>
+  
+        <button *ngIf="isLoggedIn$ | async" mat-button routerLink="/list" routerLinkActive="active">
+          <mat-icon class="nav-icon">list_alt</mat-icon>
+          <span class="nav-label">List</span>
+        </button>
+  
+        <button *ngIf="isLoggedIn$ | async" mat-button routerLink="/favourites" routerLinkActive="active">
+          <mat-icon class="nav-icon">favorite</mat-icon>
+          <span class="nav-label">Favorites</span>
+        </button>
+
+        <button *ngIf="isLoggedIn$ | async" mat-button routerLink="/parked" routerLinkActive="active">
+          <mat-icon class="nav-icon">favorite</mat-icon>
+          <span class="nav-label">Parking Sessions</span>
+        </button>
+  
+        <!-- Auth/Logout Buttons -->
+        <div *ngIf="!(isLoggedIn$ | async)" class="auth-section">
+          <button mat-button routerLink="/login" class="auth-button">
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+          </button>
+          <button mat-raised-button color="primary" routerLink="/register" class="auth-button">
+            <mat-icon>person_add</mat-icon>
+            <span>Register</span>
+          </button>
+        </div>
+  
+        <button *ngIf="isLoggedIn$ | async" mat-button (click)="logout()" class="logout-button">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
